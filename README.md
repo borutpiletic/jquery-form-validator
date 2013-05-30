@@ -1,4 +1,4 @@
-(comming soon) jQuery formValidator plugin documentation
+(coming soon) jQuery formValidator plugin documentation
 =========================================
 Supported validators
 
