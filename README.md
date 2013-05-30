@@ -1,5 +1,5 @@
 jQuery formValidator plugin documentation
-
+=========================================
 Supported validators
 
 IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
