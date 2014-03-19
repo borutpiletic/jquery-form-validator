@@ -16,10 +16,10 @@ Supported attributes: none
 ### required
 Description: Used for validating required form fields, which are required - thus cannot be empty. 
 
-NOTES: 
-1. When working with radio buttons group (same name attribute) you must add validator-required class to only 1 element,
-the rest group will be checked automatically.
-2. When using required on select element, make sure first element option has attribute value set to empty, else its value
+NOTE:
+ * When working with radio buttons group (same name attribute) you must add validator-required class to only 1 element,
+    the rest group will be checked automatically.
+ * When using required on select element, make sure first element option has attribute value set to empty, else its value
 will be same as option text (which means it has value).
 
 Supported attributes: none
