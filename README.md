@@ -1,12 +1,13 @@
-(coming soon) jQuery formValidator plugin documentation
+jQuery formValidator plugin documentation
 =========================================
+
 Supported validators
 
-IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
+> IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
 where user input is mandatory, else validation will only be performed on elements that have validator declared and element
 value has been set.
 
-email
+### email
 Description: Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
