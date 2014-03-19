@@ -1,18 +1,19 @@
-jQuery formValidator plugin documentation
+jQuery formValidator plugin
 =========================================
-
-Supported validators
 
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
 where user input is mandatory, else validation will only be performed on elements that have validator declared and element
 value has been set.
+
+Supported validators
+--------------------
 
 ### email
 Description: Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
 
-required
+### required
 Description: Used for validating required form fields, which are required - thus cannot be empty. 
 
 NOTES: 
@@ -26,24 +27,25 @@ Supported attributes: none
 Example:
 
 Select menu requires to select at least one option
-<select name="age" class="validator-required">
-    <option value="">Please select your age</option>
-    <option value="18-30">18-30</option>
-    <option value="30-50">30-50</option>
-</select>
+
+    <select name="age" class="validator-required">
+        <option value="">Please select your age</option>
+        <option value="18-30">18-30</option>
+        <option value="30-50">30-50</option>
+    </select>
 
 Required radio button group
-<input name="userGender" type="radio" class="validator-required" value="female" /> Female
-<input name="userGender" type="radio" value="male" /> Male
+    <input name="userGender" type="radio" class="validator-required" value="female" /> Female
+    <input name="userGender" type="radio" value="male" /> Male
 
 Because radio button group elements have the same name, complete group will be checked.
 
-numbers
+### numbers
 Description: Used for validating numbers input.
 
 Supported attributes: none
 
-length
+### length
 Description: Used for validating input length.
 
 Supported attributes:
@@ -51,8 +53,7 @@ Supported attributes:
 
 Examples:
 
-
-regexp
+### regexp
 Description: Used for validating values against custom regular expression.
 
 Supported attributes:
@@ -61,7 +62,7 @@ Supported attributes:
 
 Example:
 
-compare
+### compare
 Description: Used for validating input against simple specified value. For more complex comparison, rather
 use regexp validator because this validator comparison is absolute.
 
@@ -70,21 +71,22 @@ Supported attributes:
 
 Example:
 
-url
+### url
 Description: Used for validating URL formats. It currently supports http, https and ftp schemes.
 For more complex validation, you can use regex validator.
 
 Supported attributes: none
 
-Example:
+Example: /
 
 Validator options:
-
+------------------
 validateLive (boolean) - whenever live validation should be performed (as you type) | default: false
 validateLiveDelay (int) - delay in miliseconds before live validator is triggered | default: 1000
 stopOnInvalid (boolean) - stop form validation when first element validation fails | default: false
 
 Validator hooks:
+----------------
 Currently there are 4 hooks avaliable to hook into validation execution and give you control
 of what to do with an element at the certain point of validation process.
 
@@ -108,24 +110,26 @@ of what to do with an element at the certain point of validation process.
 Form validator usage example:
 Using form validator plugin is really simple. Look at this example, and you should get a clear idea on how it can be used.
 
-$('#fb-user-data').formValidator({       
-    // Stop validating after one validation failed
-    stopOnInvalid: false,
-    // Validate while user is typing
-    validateLive: true,
-    // Delay n miliseconds before validator is triggered
-    validateLiveDelay: 1000,
-    // onEvent event callback
-    onError: function(element)
-    {
-    },
-    onInvalid: function(element, data)
-    {
-    },
-    onSuccess: function(element)
-    {
-    }
-});
+    $('#fb-user-data').formValidator({       
+        // Stop validating after one validation failed
+        stopOnInvalid: false,
+        // Validate while user is typing
+        validateLive: true,
+        // Delay n miliseconds before validator is triggered
+        validateLiveDelay: 1000,
+
+        // onEvent event callbacks
+        onError: function(element)
+        {
+            // do somthing cool with your element
+        },
+        onInvalid: function(element, data)
+        {
+        },
+        onSuccess: function(element)
+        {
+        }
+    });
 
 
 
