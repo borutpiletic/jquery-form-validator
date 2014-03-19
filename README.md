@@ -35,6 +35,7 @@ Select menu requires to select at least one option
     </select>
 
 Required radio button group
+
     <input name="userGender" type="radio" class="validator-required" value="female" /> Female
     <input name="userGender" type="radio" value="male" /> Male
 
@@ -51,16 +52,12 @@ Description: Used for validating input length.
 Supported attributes:
 - data-valid-length: Length to validate against specified in format "min,max" or to check less than "value".
 
-Examples:
-
 ### regexp
 Description: Used for validating values against custom regular expression.
 
 Supported attributes:
 - data-valid-regexp: Regular expression to validate against.
 - data-valid-regexp-modifiers: Additional regular expression modifiers.
-
-Example:
 
 ### compare
 Description: Used for validating input against simple specified value. For more complex comparison, rather
@@ -77,13 +74,11 @@ For more complex validation, you can use regex validator.
 
 Supported attributes: none
 
-Example: /
-
 Validator options:
 ------------------
-validateLive (boolean) - whenever live validation should be performed (as you type) | default: false
-validateLiveDelay (int) - delay in miliseconds before live validator is triggered | default: 1000
-stopOnInvalid (boolean) - stop form validation when first element validation fails | default: false
+- validateLive (boolean) - whenever live validation should be performed (as you type) | default: false
+- validateLiveDelay (int) - delay in miliseconds before live validator is triggered | default: 1000
+- stopOnInvalid (boolean) - stop form validation when first element validation fails | default: false
 
 Validator hooks:
 ----------------
@@ -107,7 +102,7 @@ of what to do with an element at the certain point of validation process.
     Recieves: form
 
 
-Form validator usage example:
+### Form validator usage example:
 Using form validator plugin is really simple. Look at this example, and you should get a clear idea on how it can be used.
 
     $('#fb-user-data').formValidator({       
