@@ -1,13 +1,12 @@
 jQuery formValidator plugin
 =========================================
+This simple form validatior plugin purpose is to be a "lightweight & simple to use" backbone for 
+various form validation adventures.
 
-### Installation
+Installation
+------------
 
     <script src="/jquery.form-validator.js" type="text/javascript"></script>
-
-> IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
-where user input is mandatory, else validation will only be performed on elements that have validator declared and element
-value has been set.
 
 Supported validators
 --------------------
@@ -19,6 +18,10 @@ Supported attributes: none
 
 ### required
 Description: Used for validating required form fields, which are required - thus cannot be empty. 
+
+> IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
+where user input is mandatory, else validation will only be performed on elements that have validator declared and element
+value has been set.
 
 NOTE:
  * When working with radio buttons group (same name attribute) you must add validator-required class to only 1 element,
