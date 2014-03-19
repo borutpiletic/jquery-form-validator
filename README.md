@@ -1,6 +1,10 @@
 jQuery formValidator plugin
 =========================================
 
+### Installation
+
+    <script src="/jquery.form-validator.js" type="text/javascript"></script>
+
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
 where user input is mandatory, else validation will only be performed on elements that have validator declared and element
 value has been set.
