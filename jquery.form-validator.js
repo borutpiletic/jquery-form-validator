@@ -1,5 +1,5 @@
 /*!
-* jQuery Form Validator Plugin v0.2
+* jQuery formValidator Plugin v0.2
 * https://github.com/borutpiletic/jquery-form-validator
 *
 * Copyright 2013 Borut Piletic - http://borutpiletic.net
