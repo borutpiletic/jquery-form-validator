@@ -1,3 +1,10 @@
+/*!
+* jQuery Form Validator Plugin v0.2
+* https://github.com/borutpiletic/jquery-form-validator
+*
+* Copyright 2013 Borut Piletic - http://borutpiletic.net
+* Released under the MIT license
+*/
 (function($) {
     
     // Create a plugin constructor
