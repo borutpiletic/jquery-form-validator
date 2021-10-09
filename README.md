@@ -1,5 +1,7 @@
-jQuery formValidator plugin
-=========================================
+# jQuery form validation plugin (`formValidator`)
+
+> **This plugin was written in 2013 and is not being maintained since.**
+
 This simple form validatior plugin purpose is to be a "lightweight & simple to use" backbone for
 various form validation adventures.
 
