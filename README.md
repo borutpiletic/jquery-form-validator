@@ -40,12 +40,12 @@ $('#my-form').formValidator({
 ## Supported validators
 
 **`email`**\
-Description: Used for validating email addresses. Checking against proper email format.
+Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
 
 **`required`**\
-Description: Used for validating required form fields, which are required - thus cannot be empty.
+Used for validating required form fields, which are required - thus cannot be empty.
 
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
 where user input is mandatory, else validation will only be performed on elements that have validator declared and element
@@ -79,25 +79,25 @@ Required radio button group
 Because radio button group elements have the same name, complete group will be checked.
 
 **`numbers`**\
-Description: Used for validating numbers input.
+Used for validating numbers input.
 
 Supported attributes: none
 
 **`length`**\
-Description: Used for validating input length.
+Used for validating input length.
 
 Supported attributes:
 - `data-valid-length`: Length to validate against specified in format "min,max" or to check less than "value".
 
 **`regexp`**\
-Description: Used for validating values against custom regular expression.
+Used for validating values against custom regular expression.
 
 Supported attributes:
 - `data-valid-regexp`: Regular expression to validate against.
 - `data-valid-regexp-modifiers`: Additional regular expression modifiers.
 
 **`compare`**\
-Description: Used for validating input against simple specified value. For more complex comparison, rather
+Used for validating input against simple specified value. For more complex comparison, rather
 use regexp validator because this validator comparison is absolute.
 
 Supported attributes:
@@ -109,7 +109,8 @@ For more complex validation, you can use `regex` validator.
 
 Supported attributes: none
 
-Validator options:
+### Validator options
+
 - `validateLive` (boolean) - whenever live validation should be performed (as you type) | default: false
 - `validateLiveDelay` (int) - delay in miliseconds before live validator is triggered | default: 1000
 - `stopOnInvalid` (boolean) - stop form validation when first element validation fails | default: false
