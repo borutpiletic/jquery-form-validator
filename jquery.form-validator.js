@@ -1,36 +1,36 @@
-/*!
+/*
 * jQuery formValidator Plugin v0.2
 * https://github.com/borutpiletic/jquery-form-validator
 *
-* Copyright 2013 Borut Piletic - http://borutpiletic.net
+* Copyright 2013 Borut Piletic - https://borutpiletic.com
 * Released under the MIT license
 */
 (function($) {
-    
+
     // Create a plugin constructor
     jQuery.fn.formValidator = function(options)
     {
         if(options == undefined)
             options = {};
-        
+
         // Set form selector
         options.formSelector = this.selector;
-        
+
         // Set form validator options
         FormValidator.setOptions(options);
-        
+
         // Run default validation onsubmit form
         $(this).bind('submit', function(event)
         {
             FormValidator.validate(this, options);
-            
+
             if(FormValidator.isFormInvalid)
                 return false;
             else
                 // Form validators passed, safe to trigger submission
                 FormValidator.triggerHook('beforeSubmit', this, event);
         });
-        
+
         // Run live validation
         if(options.validateLive != undefined && options.validateLive == true)
         {
@@ -38,14 +38,14 @@
             FormValidator.validateLive();
         }
     };
-    
+
     // Validation class
     FormValidator = {
 
         isFormInvalid: false,
-        
+
         isElementInvalid: false,
-        
+
         options: null,
 
         setOptions: function(options)
@@ -55,11 +55,11 @@
              // Set default options
              if(this.options.stopOnInvalid == undefined)
                  this.options.stopOnInvalid = false;
-             
+
              if(this.options.validateLiveDelay == undefined)
                  this.options.validateLiveDelay = 1000;
-             
-             if(this.options.formSelector == undefined) 
+
+             if(this.options.formSelector == undefined)
                  throw new Error('No form selector specified');
         },
 
@@ -68,11 +68,11 @@
             if(FormValidator.options[name] != undefined)
                 FormValidator.options[name](element, data);
         },
-        
+
         getFormElements: function()
         {
             return $(
-              this.options.formSelector + ' input:visible, ' + 
+              this.options.formSelector + ' input:visible, ' +
               this.options.formSelector + ' checkbox:visible, ' +
               this.options.formSelector + ' select:visible, ' +
               this.options.formSelector + ' textarea:visible '
@@ -82,31 +82,31 @@
         validate: function(form, options)
         {
             this.setOptions(options);
-            
+
             var elements = this.getFormElements();
-            
+
             // Before form validation event
             FormValidator.triggerHook('beforeValidate', form);
-               
+
             // Validate all form elements
             $.each(elements, function(i, element)
             {
                 FormValidator.validateElement(element);
-                
+
                 if(FormValidator.options.stopOnInvalid)
                 {
                     if(FormValidator.isElementInvalid)
                         return false;
-                }          
+                }
             });
 
             // After form validation event
             FormValidator.triggerHook('afterValidate', form);
-            
+
             // Set validation status
             FormValidator.setFormValidationStatus(elements);
         },
-        
+
         validateLive: function()
         {
             // Live form element validation
@@ -121,9 +121,9 @@
                    if(this.type == 'text' || this.type == 'textarea')
                    {
                         var element = this;
-                        
+
                         clearTimeout(timeout);
-                        
+
                         // Live validation with delay
                         if($(element).val())
                         {
@@ -132,13 +132,13 @@
                             }, FormValidator.options.validateLiveDelay);
                         }
                    }
-               });            
+               });
             });
-            
+
             // Set validation status
             FormValidator.setFormValidationStatus(elements);
         },
-        
+
         setFormValidationStatus: function(elements)
         {
             var isInvalid = false;
@@ -153,7 +153,7 @@
 
             FormValidator.isFormInvalid = (isInvalid) ? true : false;
         },
-        
+
         validateElement: function(element)
         {
             // Check element for validators
@@ -162,18 +162,18 @@
                 // Reset element errors indicator
                 FormValidator.isElementInvalid = false;
                 $(element).removeAttr('data-error');
-                
+
                 // If element is optional and has no value - skip validation
                 if(element.value.length == 0 && $(element).attr('class').indexOf('validator-required') == -1)
-                    return true;                
-                
-                // Element validation start event                
+                    return true;
+
+                // Element validation start event
                 FormValidator.triggerHook('onValidate', element);
-                
+
                 // Get element validators
                 var validators = $(element).attr('class').toLowerCase().match(/validator-[a-z\-]+/g);
-                
-                // Run single validation 
+
+                // Run single validation
                 if(validators.length == 1)
                 {
                     var validatorName = validators[0].substr(10);
@@ -182,41 +182,41 @@
                     {
                         // Element has errors indicator
                         $(element).attr('data-error', true);
-                        
+
                         FormValidator.isElementInvalid = true;
-                        FormValidator.triggerHook('onInvalid', element, { validatorName : validatorName });                               
+                        FormValidator.triggerHook('onInvalid', element, { validatorName : validatorName });
                     }
                     else
                     {
-                        // Reset valid indicator for every validation                        
+                        // Reset valid indicator for every validation
                         if($(element).attr('data-error') == undefined)
                         {
                             FormValidator.isElementInvalid = false;
                             FormValidator.triggerHook('onSuccess', element);
                         }
                     }
-                    
+
                     // onInvalid event - trigger only when 1st error occurs
                     if($(element).attr('data-error') != undefined)
-                        FormValidator.triggerHook('onError', element);                    
+                        FormValidator.triggerHook('onError', element);
                 }
-                
+
                 // Multiple rules validation
                 else if(validators.length > 1)
                 {
                     FormValidator.triggerHook('beforeValidate', element);
 
-                    for (i = 0; i < validators.length; i++) 
+                    for (i = 0; i < validators.length; i++)
                     {
                         var validatorName = validators[i].substr(10);
-                        
+
                         if( !FormValidator.runValidator(validatorName, element) )
                         {
                             FormValidator.isElementInvalid = true;
-                            
-                            // Set element error 
+
+                            // Set element error
                             $(element).attr('data-error', true);
-                            
+
                             FormValidator.triggerHook('onInvalid', element, {validatorName: validatorName});
                         }
                         else
@@ -230,14 +230,14 @@
                             }
                         }
                     }
-                    
+
                     // onInvalid event - trigger only when 1st error occurs
                     if($(element).attr('data-error') != undefined)
                         FormValidator.triggerHook('onError', element);
                 }
             }
         },
-        
+
         runValidator: function(name, element)
         {
             switch(name)
@@ -264,17 +264,17 @@
 
                 case 'compare':
                     return this.validatorCompare(element);
-                break;                   
+                break;
 
                 case 'regexp':
                     return this.validatorRegExp(element);
-                break; 
+                break;
             }
         },
 
         //
-        // Element validators 
-        //           
+        // Element validators
+        //
         validatorRequired: function(element)
         {
             var isValid = false;
@@ -296,7 +296,7 @@
                      {
                          if($(element).attr('checked') != undefined)
                          {
-                            isValid = true; 
+                            isValid = true;
                             return;
                          }
                      });
@@ -323,7 +323,7 @@
 
             if(validLength == undefined)
                 throw new Error('Missing data-valid-length attribute');
-            
+
             // Length validation with range
             if(validLength.indexOf(',') > 0)
             {
@@ -342,13 +342,13 @@
 
         validatorEmail: function(element)
         {
-            var emailRegExp = /^[\w\.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i;               
+            var emailRegExp = /^[\w\.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i;
             return ( emailRegExp.test($(element).val()) ) ? true : false;
         },
 
         validatorUrl: function(element)
         {
-            var urlRegExp = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/i;               
+            var urlRegExp = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/i;
             return ( urlRegExp.test($(element).val()) ) ? true : false;
         },
 
@@ -372,7 +372,7 @@
 
             if(regExpMod != undefined)
                 regExp = new RegExp(regExp, regExpMod);
-            else 
+            else
                 regExp = new RegExp(regExp);
 
             return ( regExp.test($(element).val()) ) ? true : false;
