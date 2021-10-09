@@ -9,14 +9,40 @@ various form validation adventures.
 <script src="/jquery.form-validator.js" type="text/javascript"></script>
 ```
 
+### Usage example
+
+```js
+$('#my-form').formValidator({
+    // Stop validating after one validation failed.
+    stopOnInvalid: false,
+    // Validate while user is typing.
+    validateLive: true,
+    // Delay n miliseconds before validator is triggered.
+    validateLiveDelay: 1000,
+    // Event callbacks (hooks)
+    onError: function(element)
+    {
+        // do somthing cool with your element
+    },
+    onInvalid: function(element, data)
+    {
+        // do somthing cool with your element
+    },
+    onSuccess: function(element)
+    {
+        // do somthing cool with your element
+    }
+});
+```
+
 ## Supported validators
 
-#### `email`
+**`email`**
 Description: Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
 
-### `required`
+**`required`**
 Description: Used for validating required form fields, which are required - thus cannot be empty.
 
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
@@ -50,32 +76,32 @@ Required radio button group
 ```
 Because radio button group elements have the same name, complete group will be checked.
 
-### `numbers`
+**`numbers`**
 Description: Used for validating numbers input.
 
 Supported attributes: none
 
-### `length`
+**`length`**
 Description: Used for validating input length.
 
 Supported attributes:
 - `data-valid-length`: Length to validate against specified in format "min,max" or to check less than "value".
 
-### `regexp`
+**`regexp`**
 Description: Used for validating values against custom regular expression.
 
 Supported attributes:
 - `data-valid-regexp`: Regular expression to validate against.
 - `data-valid-regexp-modifiers`: Additional regular expression modifiers.
 
-### `compare`
+**`compare`**
 Description: Used for validating input against simple specified value. For more complex comparison, rather
 use regexp validator because this validator comparison is absolute.
 
 Supported attributes:
 - `data-valid-compare`: Value to make absolute comparison against.
 
-### `url`
+**`url`**
 Used for validating URL formats. It currently supports http, https and ftp schemes.
 For more complex validation, you can use `regex` validator.
 
@@ -86,10 +112,9 @@ Validator options:
 - `validateLiveDelay` (int) - delay in miliseconds before live validator is triggered | default: 1000
 - `stopOnInvalid` (boolean) - stop form validation when first element validation fails | default: false
 
-## Validator hooks
+### Validator hooks
 
-Currently there are 4 hooks avaliable to hook into validation execution and give you control
-of what to do with an element at the certain point of validation process.
+Currently there is 7 hooks avaliable to hook into validation execution and give you control of what to do with an element at the certain point of validation process.
 
 - `onInvalid`: called when element validator fails (executed for each validator). Additional data object containing validator name.
     Return: element, data
@@ -99,40 +124,9 @@ of what to do with an element at the certain point of validation process.
     Recieves: element
 - `onValidate`: called before element validation begins (executed for each element)
   Recieves: element
-
 - `beforeSubmit`: form has passed all validators, calling this hook before form submission is triggered
     Recieves: form, event
 - `beforeValidate`: called before form validation begins
     Recieves: form
 - `afterValidate`: called after form validation ends
     Recieves: form
-
-
-## Form validator usage example
-Using form validator plugin is really simple. Look at this example, and you should get a clear idea on how it can be used.
-
-```js
-$('#my-form').formValidator({
-    // Stop validating after one validation failed.
-    stopOnInvalid: false,
-    // Validate while user is typing.
-    validateLive: true,
-    // Delay n miliseconds before validator is triggered.
-    validateLiveDelay: 1000,
-    // Event callbacks (hooks)
-    onError: function(element)
-    {
-        // do somthing cool with your element
-    },
-    onInvalid: function(element, data)
-    {
-        // do somthing cool with your element
-    },
-    onSuccess: function(element)
-    {
-        // do somthing cool with your element
-    }
-});
-```
-
-
