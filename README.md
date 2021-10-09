@@ -39,12 +39,12 @@ $('#my-form').formValidator({
 
 ## Supported validators
 
-**`email`**
+**`email`**\
 Description: Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
 
-**`required`**
+**`required`**\
 Description: Used for validating required form fields, which are required - thus cannot be empty.
 
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
@@ -78,32 +78,32 @@ Required radio button group
 ```
 Because radio button group elements have the same name, complete group will be checked.
 
-**`numbers`**
+**`numbers`**\
 Description: Used for validating numbers input.
 
 Supported attributes: none
 
-**`length`**
+**`length`**\
 Description: Used for validating input length.
 
 Supported attributes:
 - `data-valid-length`: Length to validate against specified in format "min,max" or to check less than "value".
 
-**`regexp`**
+**`regexp`**\
 Description: Used for validating values against custom regular expression.
 
 Supported attributes:
 - `data-valid-regexp`: Regular expression to validate against.
 - `data-valid-regexp-modifiers`: Additional regular expression modifiers.
 
-**`compare`**
+**`compare`**\
 Description: Used for validating input against simple specified value. For more complex comparison, rather
 use regexp validator because this validator comparison is absolute.
 
 Supported attributes:
 - `data-valid-compare`: Value to make absolute comparison against.
 
-**`url`**
+**`url`**\
 Used for validating URL formats. It currently supports http, https and ftp schemes.
 For more complex validation, you can use `regex` validator.
 
