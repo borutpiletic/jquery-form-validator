@@ -1,23 +1,23 @@
 jQuery formValidator plugin
 =========================================
-This simple form validatior plugin purpose is to be a "lightweight & simple to use" backbone for 
+This simple form validatior plugin purpose is to be a "lightweight & simple to use" backbone for
 various form validation adventures.
 
-Installation
-------------
+## Installation
 
-    <script src="/jquery.form-validator.js" type="text/javascript"></script>
+```html
+<script src="/jquery.form-validator.js" type="text/javascript"></script>
+```
 
-Supported validators
---------------------
+## Supported validators
 
-### email
+#### `email`
 Description: Used for validating email addresses. Checking against proper email format.
 
 Supported attributes: none
 
 ### required
-Description: Used for validating required form fields, which are required - thus cannot be empty. 
+Description: Used for validating required form fields, which are required - thus cannot be empty.
 
 > IMPORTANT: Optional elements should not have "validator-required" declared. Use "validator-required" only on elements
 where user input is mandatory, else validation will only be performed on elements that have validator declared and element
@@ -112,7 +112,7 @@ of what to do with an element at the certain point of validation process.
 ### Form validator usage example:
 Using form validator plugin is really simple. Look at this example, and you should get a clear idea on how it can be used.
 
-    $('#fb-user-data').formValidator({       
+    $('#fb-user-data').formValidator({
         // Stop validating after one validation failed
         stopOnInvalid: false,
         // Validate while user is typing
